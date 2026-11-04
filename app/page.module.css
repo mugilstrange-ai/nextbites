@@ -1,5 +1,5 @@
 .hero {
-  padding: 2.5rem 0 1.75rem;
+  padding: 2.5rem 0 1.5rem;
 }
 
 .heading {
@@ -12,12 +12,4 @@
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
-}
-
-/* Responsive grid: as many 230px+ columns as fit, reflowing on any screen. */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1.25rem;
-  padding-bottom: 3rem;
 }
