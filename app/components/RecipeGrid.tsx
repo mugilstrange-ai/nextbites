@@ -44,11 +44,22 @@ export default function RecipeGrid({ recipes }: RecipeGridProps) {
         </p>
       </div>
 
-      <section className={styles.grid} aria-label="Recipes">
-        {matches.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </section>
+      {/* Conditional rendering: the grid when something matches, a friendly message when nothing does. */}
+      {matches.length > 0 ? (
+        <section className={styles.grid} aria-label="Recipes">
+          {matches.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </section>
+      ) : (
+        <div className={styles.empty} role="status">
+          <p className={styles.emptyTitle}>No recipes match “{query.trim()}”.</p>
+          <p className={styles.emptyHint}>Check the spelling, or search by a cuisine such as Italian.</p>
+          <button type="button" className={styles.clear} onClick={() => setQuery("")}>
+            Clear search
+          </button>
+        </div>
+      )}
     </>
   );
 }
