@@ -4,7 +4,7 @@
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export type Recipe = {
-  id: string; // stable, unique slug, used as the React key (and later in URLs)
+  id: string; // stable, unique slug, used as the React key and in the URL /recipe/<id>
   title: string;
   cuisine: string;
   minutes: number; // total cooking time
@@ -12,6 +12,8 @@ export type Recipe = {
   difficulty: Difficulty;
   emoji: string; // a simple picture for the card
   description: string;
+  ingredients: string[]; // shown as a bulleted list (<ul>) on the detail page
+  steps: string[]; // shown as a numbered list (<ol>) on the detail page
 };
 
 export const recipes: Recipe[] = [
@@ -24,6 +26,25 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     emoji: "🫓",
     description: "Crispy rice-and-lentil crepe filled with spiced potato masala.",
+    ingredients: [
+      "2 cups dosa batter (fermented rice and urad dal)",
+      "3 medium potatoes, boiled and mashed",
+      "1 onion, thinly sliced",
+      "2 green chillies, slit",
+      "1 tsp mustard seeds",
+      "8 curry leaves",
+      "½ tsp turmeric",
+      "Salt, to taste",
+      "3 tbsp oil",
+    ],
+    steps: [
+      "Heat 1 tbsp oil in a pan and add the mustard seeds. Let them splutter.",
+      "Add the curry leaves, green chillies and onion, and cook until the onion is soft.",
+      "Stir in the turmeric, potatoes and salt. Mash everything together and keep warm.",
+      "Heat a flat pan, pour in a ladle of batter and spread it thinly in circles.",
+      "Drizzle oil around the edge and cook until the dosa is golden and crisp.",
+      "Spoon the potato masala into the centre, fold, and serve with chutney and sambar.",
+    ],
   },
   {
     id: "paneer-butter-masala",
@@ -34,6 +55,26 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     emoji: "🍛",
     description: "Soft paneer cubes in a rich, creamy tomato and butter gravy.",
+    ingredients: [
+      "250 g paneer, cut into cubes",
+      "3 tomatoes, puréed",
+      "1 onion, finely chopped",
+      "1 tbsp ginger-garlic paste",
+      "2 tbsp butter",
+      "½ cup fresh cream",
+      "1 tsp Kashmiri chilli powder",
+      "1 tsp garam masala",
+      "1 tsp dried fenugreek leaves (kasuri methi)",
+      "Salt, to taste",
+    ],
+    steps: [
+      "Melt the butter in a pan and fry the onion until golden.",
+      "Add the ginger-garlic paste and cook for 1 minute.",
+      "Pour in the tomato purée, chilli powder and salt. Simmer for 10 minutes, until the butter separates.",
+      "Stir in the cream and garam masala.",
+      "Add the paneer and simmer gently for 3 to 4 minutes.",
+      "Crush the kasuri methi over the top and serve with naan or rice.",
+    ],
   },
   {
     id: "veg-biryani",
@@ -44,6 +85,27 @@ export const recipes: Recipe[] = [
     difficulty: "Hard",
     emoji: "🍚",
     description: "Fragrant basmati rice layered with vegetables, saffron and mint.",
+    ingredients: [
+      "1½ cups basmati rice, soaked for 30 minutes",
+      "2 cups mixed vegetables (carrot, beans, peas, potato)",
+      "1 large onion, thinly sliced",
+      "½ cup plain yogurt",
+      "1 tbsp ginger-garlic paste",
+      "2 tbsp biryani masala",
+      "A pinch of saffron soaked in 2 tbsp warm milk",
+      "A handful of mint and coriander leaves",
+      "Whole spices: 1 bay leaf, 4 cloves, 3 cardamom pods",
+      "2 tbsp ghee",
+      "Salt, to taste",
+    ],
+    steps: [
+      "Boil the rice with the whole spices and salt until it is about 70% cooked, then drain.",
+      "Fry the onion in ghee until golden. Keep half aside for the topping.",
+      "Add the ginger-garlic paste, vegetables, yogurt, biryani masala and salt. Cook for 8 minutes.",
+      "Spread the rice over the vegetables. Top with the fried onion, mint, coriander and saffron milk.",
+      "Cover tightly and cook on the lowest heat (dum) for 20 minutes.",
+      "Rest for 5 minutes, fluff gently and serve with raita.",
+    ],
   },
   {
     id: "lemon-rice",
@@ -54,6 +116,27 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     emoji: "🍋",
     description: "Tangy rice tempered with mustard seeds, peanuts and curry leaves.",
+    ingredients: [
+      "2 cups cooked rice, cooled",
+      "Juice of 1 lemon",
+      "2 tbsp peanuts",
+      "1 tsp mustard seeds",
+      "1 tsp chana dal",
+      "1 tsp urad dal",
+      "2 dried red chillies",
+      "8 curry leaves",
+      "½ tsp turmeric",
+      "A pinch of asafoetida (hing)",
+      "2 tbsp oil",
+      "Salt, to taste",
+    ],
+    steps: [
+      "Heat the oil and add the mustard seeds, chana dal and urad dal. Fry until the dals turn golden.",
+      "Add the peanuts, red chillies, curry leaves and asafoetida, and fry for 1 minute.",
+      "Stir in the turmeric and turn off the heat.",
+      "Add the rice and salt, and mix gently so the grains don't break.",
+      "Squeeze in the lemon juice, mix once more and serve.",
+    ],
   },
   {
     id: "hakka-noodles",
@@ -64,6 +147,27 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     emoji: "🍜",
     description: "Stir-fried noodles tossed with crunchy vegetables and soy sauce.",
+    ingredients: [
+      "200 g hakka noodles",
+      "1 carrot, cut into thin strips",
+      "1 capsicum, thinly sliced",
+      "1 cup shredded cabbage",
+      "3 spring onions, chopped (whites and greens kept apart)",
+      "3 cloves garlic, finely chopped",
+      "2 tbsp soy sauce",
+      "1 tbsp vinegar",
+      "1 tsp chilli sauce",
+      "½ tsp black pepper",
+      "2 tbsp oil",
+      "Salt, to taste",
+    ],
+    steps: [
+      "Boil the noodles until just tender. Drain, rinse in cold water and toss with 1 tsp oil.",
+      "Heat the rest of the oil in a wok on high heat and fry the garlic and spring onion whites for 30 seconds.",
+      "Add the carrot, capsicum and cabbage, and stir-fry for 2 to 3 minutes so they stay crunchy.",
+      "Add the noodles, soy sauce, vinegar, chilli sauce, pepper and salt.",
+      "Toss everything on high heat for 2 minutes, then garnish with the spring onion greens.",
+    ],
   },
   {
     id: "margherita-pizza",
@@ -74,6 +178,22 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     emoji: "🍕",
     description: "Thin crust topped with tomato, fresh mozzarella and basil.",
+    ingredients: [
+      "1 pizza base (about 25 cm)",
+      "½ cup pizza sauce",
+      "125 g fresh mozzarella, sliced",
+      "6 fresh basil leaves",
+      "1 tbsp olive oil",
+      "½ tsp dried oregano",
+      "A pinch of salt",
+    ],
+    steps: [
+      "Preheat the oven to 230 °C.",
+      "Spread the sauce over the base, leaving a 1 cm rim.",
+      "Lay the mozzarella on top and sprinkle with oregano and a pinch of salt.",
+      "Bake for 10 to 12 minutes, until the crust is golden and the cheese bubbles.",
+      "Scatter the basil over the top, drizzle with olive oil, slice and serve.",
+    ],
   },
   {
     id: "greek-salad",
@@ -84,6 +204,24 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     emoji: "🥗",
     description: "Cucumber, tomato, olives and feta with an olive-oil dressing.",
+    ingredients: [
+      "1 cucumber, cut into chunks",
+      "3 tomatoes, cut into wedges",
+      "½ red onion, thinly sliced",
+      "1 green capsicum, sliced",
+      "12 kalamata olives",
+      "100 g feta cheese",
+      "3 tbsp olive oil",
+      "1 tbsp red wine vinegar or lemon juice",
+      "1 tsp dried oregano",
+      "Salt and pepper, to taste",
+    ],
+    steps: [
+      "Put the cucumber, tomato, onion and capsicum in a large bowl.",
+      "Whisk the olive oil, vinegar, oregano, salt and pepper together.",
+      "Pour the dressing over the vegetables and toss gently.",
+      "Add the olives, place the feta on top and finish with a little more oregano.",
+    ],
   },
   {
     id: "chocolate-mug-cake",
@@ -94,5 +232,29 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     emoji: "🍫",
     description: "A warm, gooey chocolate cake made in a mug in the microwave.",
+    ingredients: [
+      "4 tbsp all-purpose flour (maida)",
+      "3 tbsp sugar",
+      "2 tbsp cocoa powder",
+      "¼ tsp baking powder",
+      "A pinch of salt",
+      "3 tbsp milk",
+      "2 tbsp vegetable oil",
+      "¼ tsp vanilla extract",
+      "1 tbsp chocolate chips",
+    ],
+    steps: [
+      "Mix the flour, sugar, cocoa, baking powder and salt in a large microwave-safe mug.",
+      "Stir in the milk, oil and vanilla until the batter is smooth.",
+      "Fold in the chocolate chips.",
+      "Microwave on high for 70 to 90 seconds, until the cake has risen and the top looks set.",
+      "Let it cool for 1 minute, then eat it warm.",
+    ],
   },
 ];
+
+// Look up one recipe by its id (the slug in the URL).
+// Returns undefined when no recipe has that id, so the page can show "not found".
+export function getRecipe(id: string): Recipe | undefined {
+  return recipes.find((recipe) => recipe.id === id);
+}
