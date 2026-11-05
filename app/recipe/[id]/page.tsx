@@ -11,10 +11,14 @@ type RecipePageProps = {
   params: Promise<{ id: string }>;
 };
 
-// Build one static page per recipe ahead of time.
+// Build one static page per recipe ahead of time. With output: "export" these
+// become plain HTML files, so the site can be hosted on GitHub Pages.
 export function generateStaticParams() {
   return recipes.map((recipe) => ({ id: recipe.id }));
 }
+
+// Only the ids above exist. Any other id goes straight to the not-found page.
+export const dynamicParams = false;
 
 // Give each recipe page its own browser-tab title.
 export async function generateMetadata({ params }: RecipePageProps): Promise<Metadata> {

@@ -1,16 +1,33 @@
 import Link from "next/link";
+import { recipes } from "./data/recipes";
+import styles from "./not-found.module.css";
 
 // Shown for any unknown URL, including /recipe/<an id that doesn't exist>.
+// Next.js uses this file automatically whenever notFound() is called.
 export default function NotFound() {
+  const suggestions = recipes.slice(0, 3);
+
   return (
-    <section style={{ padding: "3rem 0", display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start" }}>
-      <h1 style={{ margin: 0 }}>Recipe not found 🥄</h1>
-      <p style={{ margin: 0, color: "var(--muted)" }}>
-        We couldn’t find that page. It may have moved, or the link has a typo.
+    <section className={styles.box}>
+      <span className={styles.emoji} aria-hidden="true">🥄</span>
+      <h1 className={styles.title}>Recipe not found</h1>
+      <p className={styles.text}>
+        We couldn’t find that page. The link may have a typo, or the recipe may have moved.
       </p>
-      <Link href="/" style={{ color: "var(--accent)", fontWeight: 600 }}>
+      <Link href="/" className={styles.home}>
         ← Back to all recipes
       </Link>
+
+      <h2 className={styles.subtitle}>Or try one of these</h2>
+      <ul className={styles.list}>
+        {suggestions.map((recipe) => (
+          <li key={recipe.id}>
+            <Link href={`/recipe/${recipe.id}`} className={styles.suggestion}>
+              <span aria-hidden="true">{recipe.emoji}</span> {recipe.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
