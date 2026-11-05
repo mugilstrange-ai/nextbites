@@ -1,0 +1,101 @@
+.page {
+  padding: 1.75rem 0 3rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Every grey block shimmers gently from left to right. */
+.block {
+  border-radius: 12px;
+  background: linear-gradient(90deg, var(--line) 25%, #f6eee3 50%, var(--line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block {
+    animation: none;
+  }
+}
+
+.back {
+  width: 120px;
+  height: 20px;
+  margin: 0.75rem 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0.75rem 0 2rem;
+}
+
+@media (max-width: 640px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cover {
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.title {
+  height: 44px;
+  width: 70%;
+}
+
+.line {
+  height: 16px;
+  width: 100%;
+}
+
+.short {
+  width: 30%;
+}
+
+.medium {
+  width: 60%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 760px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.panel {
+  height: 260px;
+  border-radius: 18px;
+}
