@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: RecipePageProps): Promise<Met
   const { id } = await params;
   const recipe = getRecipe(id);
   return {
-    title: recipe ? `${recipe.title} · NextBites` : "Recipe not found · NextBites",
+    title: recipe ? recipe.title : "Recipe not found", // the layout adds " · NextBites"
     description: recipe?.description,
   };
 }

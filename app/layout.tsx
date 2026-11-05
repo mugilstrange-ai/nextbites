@@ -7,9 +7,21 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+// The real page title and description for browser tabs and search results.
+// Pages can set their own title; the template adds " · NextBites" after it.
 export const metadata: Metadata = {
-  title: "NextBites",
-  description: "Discover simple, tasty recipes from around the world.",
+  title: {
+    default: "NextBites · Easy recipes from around the world",
+    template: "%s · NextBites",
+  },
+  description:
+    "NextBites is a recipe website built with Next.js and TypeScript. Search 8 easy recipes by name or cuisine and open each one for its ingredients and steps.",
+  applicationName: "NextBites",
+  openGraph: {
+    title: "NextBites",
+    description: "Search easy recipes from around the world and cook them step by step.",
+    type: "website",
+  },
 };
 
 // The root layout wraps every page. The NavBar sits here, and each page
