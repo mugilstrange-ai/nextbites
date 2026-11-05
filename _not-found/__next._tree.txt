@@ -1,0 +1,6 @@
+:HL["/nextbites/_next/static/chunks/4479a4i10l681.css","style"]
+:HL["/nextbites/_next/static/chunks/3ndf-0kg-pgqq.css","style"]
+:HL["/nextbites/_next/static/chunks/3mvu3evb8fgx5.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
+0:{"b":"BONRZmM0YjyVQ14g-oEPd","t":{"t":{"s":"","h":84,"c":"$Q1"}}}
