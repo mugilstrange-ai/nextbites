@@ -24,7 +24,21 @@ A recipe website built with **Next.js (App Router)** and **TypeScript**.
 
 Try it: search for `pizza`, `south indian` or `xyz`, then open any card.
 
-Coming next: polish and a live deployment (Part 3).
+## Part 3: graceful states and a live site
+
+**Live site: https://mugilstrange-ai.github.io/nextbites/**
+
+- **Loading:** `app/recipe/[id]/loading.tsx` shows a shimmering skeleton shaped like the recipe page, and
+  `app/loading.tsx` shows a short message for the home page. Next.js picks both up automatically.
+- **Not found:** the recipe route calls `notFound()` when `getRecipe()` returns nothing (and
+  `dynamicParams = false` sends any unknown id there too). `app/not-found.tsx` links home and suggests recipes.
+  Try https://mugilstrange-ai.github.io/nextbites/recipe/does-not-exist/
+- **Errors:** `app/error.tsx` is a `"use client"` error boundary with a **Try again** button that calls `reset()`.
+- **Real title:** `app/layout.tsx` exports `metadata` with a title template (`%s · NextBites`) and a description,
+  so each recipe tab reads, for example, “Masala Dosa · NextBites”.
+- **Static export:** `next.config.mjs` sets `output: "export"` and `trailingSlash: true`, plus a `/nextbites`
+  `basePath` for GitHub Pages builds. `generateStaticParams` pre-builds one page per recipe.
+- **Deploy:** `.github/workflows/deploy.yml` runs `npm run build` and publishes `out/` to the `gh-pages` branch.
 
 ## Run it locally
 
@@ -34,3 +48,9 @@ npm run dev
 ```
 
 Then open http://localhost:3000.
+
+To build the static site yourself:
+
+```bash
+npm run build   # writes the whole site to out/
+```
