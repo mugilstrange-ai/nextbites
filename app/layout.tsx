@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
+import NavBar from "./components/NavBar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const geist = Geist({
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "NextBites",
-  description: "A recipe app built with Next.js",
+  description: "Discover simple, tasty recipes from around the world.",
 };
 
+// The root layout wraps every page. The NavBar sits here, and each page
+// is rendered in place of {children}.
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={geist.className}>
+        <NavBar />
+        <main className="container">{children}</main>
+        <footer className="footer">NextBites · made with Next.js and TypeScript</footer>
       </body>
     </html>
   );

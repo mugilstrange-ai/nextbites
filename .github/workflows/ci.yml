@@ -1,0 +1,69 @@
+name: CI
+
+# Proves the app installs, passes lint and type checks, builds,
+# and actually serves the home page with recipe cards.
+# The results are written to the run's Summary page.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    name: Lint, type-check, build and run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build (Next.js also type-checks here)
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
+          {
+            echo "## npm run build"
+            echo '```'
+            sed 's/\x1b\[[0-9;]*m//g' build.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Type-check
+        run: |
+          npx tsc --noEmit
+          echo "## npx tsc --noEmit: no type errors" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Start the app and check the home page
+        run: |
+          npm run start -- -p 3000 > server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:3000 -o home.html; then break; fi
+            sleep 1
+          done
+          status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)
+          grep -q "NextBites" home.html
+          grep -q "<nav" home.html
+          cards=$(grep -o "<article" home.html | wc -l)
+          titles=$(grep -o '<h2 class="[^"]*">[^<]*</h2>' home.html | sed 's/<[^>]*>//g' | paste -sd ',' - | sed 's/,/, /g')
+          echo "Home page: HTTP $status, nav bar found, $cards recipe cards: $titles"
+          {
+            echo "## Running app (npm run start)"
+            echo "- GET / returned **HTTP $status**"
+            echo "- Shared nav bar from app/layout.tsx is present"
+            echo "- **$cards recipe cards** rendered: $titles"
+          } >> "$GITHUB_STEP_SUMMARY"
+          test "$status" = "200"
+          test "$cards" -ge 4

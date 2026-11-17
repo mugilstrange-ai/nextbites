@@ -1,9 +1,23 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  gap: 1rem;
-  font-family: var(--font-geist-sans);
+.hero {
+  padding: 2.5rem 0 1.75rem;
+}
+
+.heading {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.subheading {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* Responsive grid: as many 230px+ columns as fit, reflowing on any screen. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+  padding-bottom: 3rem;
 }
